@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  outline: none;
 }
 
 code {
@@ -12,17 +13,18 @@ code {
     monospace;
 }
 
+
 .sidebarStyle {
   display: inline-block;
   position: absolute;
   top: 0;
   left: 0;
   margin: 12px;
-  background-color: #404040;
-  color: #ffffff;
+  background-color: #fff;
+  color: #000;
   z-index: 1 !important;
   padding: 6px;
-  font-weight: bold;
+  width:390px;
 }
  
 .mapContainer {
