@@ -23,8 +23,8 @@ code {
   background-color: #fff;
   color: #000;
   z-index: 1 !important;
-  padding: 6px;
   width:390px;
+  border-radius: 10px;
 }
  
 .mapContainer {
@@ -35,4 +35,8 @@ code {
   bottom: 0;
 }
 
+/* .btn:focus {
+  outline: none;
+  box-shadow: none;
+} */
 

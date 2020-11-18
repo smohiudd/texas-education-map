@@ -30,7 +30,10 @@ let feature_dict = {
       "Grade_Leve_High School":0,
       "Grade_Leve_Junior High":0,
       "Grade_Leve_Middle":0,
-      "new_rate":"Student Performance (Meets Standards,%)"
+      "new_rate":"Student Performance (Meets Standards,%)",
+      "teacher_experience":"Teacher Experience",
+    "principal_experience": "Principal Experience",
+    "assistant_principal_count": "Assistant Principal Count"
 }
 
 // function SelectFeature(props){
@@ -62,7 +65,7 @@ function SelectMode(props){
       }
   
     return(
-        <div class='flex-parent flex-parent--center-main'>
+        <div className='flex-parent flex-parent--center-main'>
             <div className='toggle-group'>
                 {options.map(renderOptions)}
             </div>
@@ -88,7 +91,7 @@ function UserInput(props){
     if(props.SelectedMode==="2019 School Data" ||props.SelectedMode==="2019 District Data"  ){
         return(
             
-            <div className="inline-block mr6">
+            <div className="inline-block">
                  <p className="txt-s txt-em">Select a variable to change the data displayed on the map.</p>
                
                 <div className="select-container">
@@ -96,6 +99,23 @@ function UserInput(props){
                         {optionItems}
                     </select>
                     <div className="select-arrow"></div>
+                </div>
+
+                <div className='round shadow-darken10 px12 py12 txt-s'>
+                    <div className='grid mb6'>
+                        <div className='col bg-blue-faint h12'></div>
+                        <div className='col bg-blue-light h12'></div>
+                        <div className='col bg-blue h12'></div>
+                        <div className='col bg-blue-dark h12'></div>
+                        <div className='col bg-red-faint h12'></div>
+                        <div className='col bg-red-light h12'></div>
+                        <div className='col bg-red h12'></div>
+                        <div className='col bg-red-dark h12'></div>
+                    </div>
+                    <div className='grid txt-xs'>
+                        <div className='col flex-child--grow'>Low</div>
+                        <div className='col flex-child--grow align-r'>High</div>
+                    </div>
                 </div>
             </div>
         )
@@ -114,34 +134,71 @@ function UserInput(props){
     
 }
 
+function Modal({ handleClose, show, children }){
+
+    const showHideClassName = show ? "block" : "none";
+
+    return(
+        <div class='flex-parent flex-parent--center-main pt36 z5'>
+                <div class={`shadow-darken50 flex-child bg-white round relative w600 z5 ${showHideClassName}`}>
+                <button class='absolute top right px12 py12 z5' onClick={handleClose}>
+                    X
+                </button>
+                <div class='px24 py24 z5'>
+                    <div class='txt-h2 mb12 z5'>Texas Education Agency Student Performance Prediction</div>
+                    <div class='txt-m z5'>
+                    I am some modal body content.
+                    </div>
+                </div>
+                </div>
+            </div>
+    )
+
+}
+
 
 function SideBar(props) {
     return (
-        <div>
-        <div className='sidebarStyle prose px12 py12'>
 
-            <h3>Texas Education Data Map</h3>
-            <p className="txt-h5">Visualizing and Predicting student performance using historical achievement data from Texas Education Agency</p>
+        <>
+            <div>
 
-
-            <SelectMode checkedValue={props.view} handleViewChange={props.onViewChange}/>
-            {/* <SelectFeature featureValue={props.feature} handleFeatureChange={props.onFeatureChange}/> */}
-
-           
-            <UserInput 
-                SelectedMode = {props.view} 
-                featureValue={props.feature} 
-                handleFeatureChange={props.onFeatureChange}
-                features = {props.features}
-                prediction_features = {props.prediction_features}
-                ChangePredictor = {props.onChangePredictor}
-            />
+        
+                    <Modal show={props.status} handleClose={props.handleClose}></Modal>
 
 
-           
-        </div>
+               
+    
+                <div className='sidebarStyle prose px12 py12'>
 
-        </div>
+                    <button onClick={props.handleOpen} className='btn btn--s bg-green-faint color-green'>About This Project</button>
+
+                    <h3>Texas Education Data Map</h3>
+                    <p className="txt-h5">Visualizing and Predicting student performance using historical achievement data from Texas Education Agency</p>
+
+
+                    <SelectMode checkedValue={props.view} handleViewChange={props.onViewChange}/>
+                    {/* <SelectFeature featureValue={props.feature} handleFeatureChange={props.onFeatureChange}/> */}
+
+                
+                    <UserInput 
+                        SelectedMode = {props.view} 
+                        featureValue={props.feature} 
+                        handleFeatureChange={props.onFeatureChange}
+                        features = {props.features}
+                        prediction_features = {props.prediction_features}
+                        ChangePredictor = {props.onChangePredictor}
+                    />
+
+
+            
+                </div>
+
+            </div>
+
+            </>
+     
+
 
     )
 }
