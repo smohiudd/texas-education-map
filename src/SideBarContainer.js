@@ -42,7 +42,7 @@ function UserInput(props){
                         <div className='flex-child'><button name = "plus" className='btn btn--stroke btn--s' key={feature} value={feature} onClick={props.ChangePredictor}>+</button></div>
                         </div>
                     </div>
-                    <div className='flex-child flex-child--grow pl24 txt-bold color-green-light'>
+                    <div className='flex-child flex-child--grow pl6 txt-bold txt-s color-green-light'>
  
                     {(props.FeatureChange[feature]<0?"-":"+")} {Math.abs(props.FeatureChange[feature])}
 
@@ -56,7 +56,7 @@ function UserInput(props){
         return(
      
             <div className="inline-block">
-                 <p className="txt-s txt-em">Select a variable to change the data displayed on the map.</p>
+                 <p className="txt-s txt-bold">Select a variable to change the data displayed on the map.</p>
                
                 <div className="select-container">
                     <select onChange={props.handleFeatureChange} value={props.featureValue} className="select mb24 mt12 txt-m">
@@ -86,7 +86,7 @@ function UserInput(props){
     }else{
         return(
             <div>
-                <p className="txt-m txt-em"> Manipulate a variable to to see how it impacts Student Performance.</p>
+                <p className="txt-s txt-bold"> Manipulate a <span className="txt-kbd">variable</span> to to see how it impacts Student Performance.</p>
 
                 {predict_options}
             </div>
@@ -108,9 +108,27 @@ function Modal({ handleClose, show, children }){
                     X
                 </button>
                 <div class='px24 py24 z5'>
-                    <div class='txt-h2 mb12 z5'>Texas Education Agency Student Performance Prediction</div>
-                    <div class='txt-m z5'>
-                    I am some modal body content.
+                    <div class='txt-h3 mb12 z5'>About This Project</div>
+                    <div class='txt-s z5'>
+
+                    <p>
+                    In August 2020 a non-profit organization, Teaching Trust, released detailed educational achievement data from the 
+                    Texas Education Agency (TEA) with the hope of encouraging academics, researchers and data scientists to analyze the 
+                    data in a meaningful way. The data release consists of annual STAAR (State of Texas Assessment of Academic Readiness) 
+                    and TAPR (Texas Academic Performance Reports) data including assessment results, demographic breakdowns, information 
+                    on school and district staff and programs. The data is unique as it allows for longitudinal analysis of student and school 
+                    performance data between 2012 and 2019 covering about 10% of the total student population in the United States. Student achievement
+                    plays an important role in assessing the performance of school districts and is a main driver of educational funding and policy decisions.
+                    </p>
+                    <br/>
+                    <p>
+                    There has been much research on how student demographics, socioeconomic status and student teacher ratio impact overall school 
+                    performance. However, the impacts of teacher and faculty details have been limited. The project created a linear regression model on detailed staffing and student 
+                    information, using a combination of variables to predict student performance.
+                    </p>
+
+
+
                     </div>
                 </div>
                 </div>
@@ -131,8 +149,8 @@ function SideBar(props) {
 
                     <button onClick={props.handleOpen} className='btn btn--s bg-green-faint color-green'>About This Project</button>
 
-                    <h3>Texas Education Data Map</h3>
-                    <p className="txt-h5">Visualizing and Predicting student performance using historical achievement data from Texas Education Agency</p>
+                    <h3>Visualizing the Impact of School Staffing Decisions on Student Achievement in Texas</h3>
+                    {/* <p className="txt-h5">Visualizing and Predicting student performance using historical achievement data from Texas Education Agency</p> */}
 
 
                     <SelectMode checkedValue={props.view} handleViewChange={props.onViewChange}/>

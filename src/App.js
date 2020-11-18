@@ -53,6 +53,17 @@ let prediction_features = [
   "assistant_principal_count"
 ]
 
+let featureChangeValues ={
+    "all_students":50,
+    "at_risk":5,
+    "african_american":5,
+    "teacher_total_base_salary":10000,
+    "teacher_experience":5,
+    "white":5,
+    "principal_experience":5,
+    "assistant_principal_count":1,
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -282,7 +293,7 @@ class App extends React.Component {
 
     if (e.target.name === 'minus') {
     
-      this.setState({[feature]:this.state[feature]-10},()=>{
+      this.setState({[feature]:this.state[feature]-featureChangeValues[feature]},()=>{
         this.updatePredictions()
         this.updatedPredictionGeometry()
         console.log(this.state[feature])
@@ -290,7 +301,7 @@ class App extends React.Component {
 
 
     } else {
-      this.setState({[feature]:this.state[feature]+10},()=>{
+      this.setState({[feature]:this.state[feature]+featureChangeValues[feature]},()=>{
         this.updatePredictions()
         this.updatedPredictionGeometry()
         console.log(this.state[feature])
