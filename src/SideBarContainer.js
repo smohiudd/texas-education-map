@@ -89,6 +89,24 @@ function UserInput(props){
                 <p className="txt-s txt-bold"> Manipulate a <span className="txt-kbd">variable</span> to to see how it impacts Student Performance.</p>
 
                 {predict_options}
+
+                <div className='round shadow-darken10 px12 py12 mt24 txt-s'>
+                    <div className='grid mb6'>
+                        <div className='col h12' style={{backgroundColor: "#000004"}}></div>
+                        <div className='col h12' style={{backgroundColor: "#280b53"}}></div>
+                        <div className='col h12' style={{backgroundColor: "#65156e"}}></div>
+                        <div className='col h12' style={{backgroundColor: "#9f2a63"}}></div>
+                        <div className='col h12' style={{backgroundColor: "#d44842"}}></div>
+                        <div className='col h12' style={{backgroundColor: "#f57d15"}}></div>
+                        <div className='col h12' style={{backgroundColor: "#fac228"}}></div>
+                        <div className='col h12' style={{backgroundColor: "#fcffa4"}}></div>
+                    </div>
+                    <div className='grid txt-xs'>
+                        <div className='col flex-child--grow'>Low</div>
+                        <div className='col flex-child--grow align-r'>High</div>
+                    </div>
+                </div>
+
             </div>
       
         )
@@ -123,9 +141,14 @@ function Modal({ handleClose, show, children }){
                     <br/>
                     <p>
                     There has been much research on how student demographics, socioeconomic status and student teacher ratio impact overall school 
-                    performance. However, the impacts of teacher and faculty details have been limited. The project created a linear regression model on detailed staffing and student 
+                    performance. However, the impacts of teacher and faculty details have been limited. The project team created a <span className="txt-bold">linear regression model</span> on detailed staffing and student 
                     information, using a combination of variables to predict student performance.
                     </p>
+
+                    <br/>
+
+                    <p className="txt-xs">Andrew Oglesby, Saadiq Mohiuddin, Andrew Flint, Greer Homer, Arunkumar Raja, Youssouf Ouedraogo </p>
+
 
 
 
@@ -150,6 +173,7 @@ function SideBar(props) {
                     <button onClick={props.handleOpen} className='btn btn--s bg-green-faint color-green'>About This Project</button>
 
                     <h3>Visualizing the Impact of School Staffing Decisions on Student Achievement in Texas</h3>
+                    <p className="txt-xs">Each circle on the map represents one school.</p>
                     {/* <p className="txt-h5">Visualizing and Predicting student performance using historical achievement data from Texas Education Agency</p> */}
 
 

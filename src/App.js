@@ -112,6 +112,16 @@ class App extends React.Component {
 
     this.map.on('load', () => {
 
+
+      var layers = this.map.getStyle().layers;
+      // Find the index of the first symbol layer in the map style
+      var firstSymbolId;
+      for (var i = 0; i < layers.length; i++) {
+        if (layers[i].type === 'symbol') {
+          firstSymbolId = layers[i].id;
+          break;
+        }
+}
       this.map.addSource('schools', {
         'type': 'geojson',
         'data': url_data
@@ -136,7 +146,7 @@ class App extends React.Component {
           ],
         },
         
-      })
+      },firstSymbolId)
 
       this.map.addLayer({
         'id': 'Predict Student Performance',
@@ -154,7 +164,7 @@ class App extends React.Component {
             14,10,
           ],
         },
-      })
+      },firstSymbolId)
 
     })
 
@@ -166,6 +176,10 @@ class App extends React.Component {
 
     this.map.on('mouseenter', '2019 School Data', this.popupEnter.bind(this));
     this.map.on('mouseleave', '2019 School Data', this.popupLeave.bind(this));
+
+
+    this.map.on('mouseenter', 'Predict Student Performance', this.popupEnter.bind(this));
+    this.map.on('mouseleave', 'Predict Student Performance', this.popupLeave.bind(this));
 
     getDefaultData()
     predict()
