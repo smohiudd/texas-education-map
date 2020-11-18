@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/texas-education-map/static/css/main.cfa873a1.chunk.css",
-    "main.js": "/texas-education-map/static/js/main.e85309ca.chunk.js",
-    "main.js.map": "/texas-education-map/static/js/main.e85309ca.chunk.js.map",
+    "main.js": "/texas-education-map/static/js/main.320b6b4f.chunk.js",
+    "main.js.map": "/texas-education-map/static/js/main.320b6b4f.chunk.js.map",
     "runtime-main.js": "/texas-education-map/static/js/runtime-main.f73913ee.js",
     "runtime-main.js.map": "/texas-education-map/static/js/runtime-main.f73913ee.js.map",
-    "static/js/2.73d7d609.chunk.js": "/texas-education-map/static/js/2.73d7d609.chunk.js",
-    "static/js/2.73d7d609.chunk.js.map": "/texas-education-map/static/js/2.73d7d609.chunk.js.map",
+    "static/js/2.50e66f7d.chunk.js": "/texas-education-map/static/js/2.50e66f7d.chunk.js",
+    "static/js/2.50e66f7d.chunk.js.map": "/texas-education-map/static/js/2.50e66f7d.chunk.js.map",
     "index.html": "/texas-education-map/index.html",
     "static/css/main.cfa873a1.chunk.css.map": "/texas-education-map/static/css/main.cfa873a1.chunk.css.map",
-    "static/js/2.73d7d609.chunk.js.LICENSE.txt": "/texas-education-map/static/js/2.73d7d609.chunk.js.LICENSE.txt"
+    "static/js/2.50e66f7d.chunk.js.LICENSE.txt": "/texas-education-map/static/js/2.50e66f7d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f73913ee.js",
-    "static/js/2.73d7d609.chunk.js",
+    "static/js/2.50e66f7d.chunk.js",
     "static/css/main.cfa873a1.chunk.css",
-    "static/js/main.e85309ca.chunk.js"
+    "static/js/main.320b6b4f.chunk.js"
   ]
 }
