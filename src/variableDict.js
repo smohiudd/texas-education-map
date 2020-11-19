@@ -14,8 +14,8 @@ export let feature_dict = {
       "teacher_no_degree_full_time_equiv":"Teachers with no Degree (Count)",
       "teacher_ba_degree_full_time_equiv":"Teachers with Bachelors Degree (Count)",
       "teacher_ms_degree_full_time_equiv":"Teachers with Masters Degree (Count)",
-      "teacher_student_ratio":"Teacher Student Ratio (Ratio)",
-      "all_students":"Number of Students (Count)",
+      "teacher_student_ratio":"Teacher Student Ratio (%)",
+      "all_students":"Number of Students",
       "white":"Number of White Students",
       "african_american":"Number of African Amercian Students",
       "hispanic":"Number of Hispanic Students",
@@ -27,7 +27,7 @@ export let feature_dict = {
       "Grade_Leve_Junior High":0,
       "Grade_Leve_Middle":0,
       "new_rate":"Student Performance (Meets Standards,%)",
-      "teacher_experience":"Teacher Experience",
-      "principal_experience": "Principal Experience",
+      "teacher_experience":"Teacher Experience (Avg Years)",
+      "principal_experience": "Principal Experience (Avg Years)",
       "assistant_principal_count": "Assistant Principal Count"
   }

@@ -40,3 +40,4 @@ code {
   box-shadow: none;
 } */
 
+*:focus {outline:none !important}

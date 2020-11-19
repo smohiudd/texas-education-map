@@ -26,15 +26,18 @@ function SelectMode(props){
 
 function UserInput(props){
 
+    const showLoadingClassName = props.isLoading ? "loading" : "none";
     let optionItems = props.features.map((feature) => <option key={feature} value={feature}>{feature_dict[feature]}</option>);
 
     let predict_options = props.prediction_features.map((feature) => {
         return (
 
-
                 <div className='flex-parent'>
+                    
                     <div className='flex-child flex-child--no-shrink w300'>
+                    
                         <div className='flex-parent flex-parent--space-between-main'>
+                        
                         <div className='flex-child'><button className='btn btn--stroke btn--s' name = "minus" key={feature} value={feature} onClick={props.ChangePredictor}>-</button> </div>
                         
                             <span className="txt-s">{feature_dict[feature]} </span>
@@ -87,7 +90,7 @@ function UserInput(props){
         return(
             <div>
                 <p className="txt-s txt-bold"> Manipulate a <span className="txt-kbd">variable</span> to to see how it impacts Student Performance.</p>
-
+                <div class={showLoadingClassName}></div>
                 {predict_options}
 
                 <div className='round shadow-darken10 px12 py12 mt24 txt-s'>
@@ -127,7 +130,7 @@ function Modal({ handleClose, show, children }){
                 </button>
                 <div class='px24 py24 z5'>
                     <div class='txt-h3 mb12 z5'>About This Project</div>
-                    <div class='txt-s z5'>
+                    <div class='txt-m z5'>
 
                     <p>
                     In August 2020 a non-profit organization, Teaching Trust, released detailed educational achievement data from the 
@@ -149,9 +152,6 @@ function Modal({ handleClose, show, children }){
 
                     <p className="txt-xs">Andrew Oglesby, Saadiq Mohiuddin, Andrew Flint, Greer Homer, Arunkumar Raja, Youssouf Ouedraogo </p>
 
-
-
-
                     </div>
                 </div>
                 </div>
@@ -166,7 +166,6 @@ function SideBar(props) {
 
         <>
             <div>
-                
                 <Modal show={props.status} handleClose={props.handleClose}></Modal>
                 <div className='sidebarStyle prose px12 py12'>
 
@@ -188,7 +187,7 @@ function SideBar(props) {
                         prediction_features = {props.prediction_features}
                         ChangePredictor = {props.onChangePredictor}
                         FeatureChange = {props.FeatureChange}
-
+                        isLoading={props.isLoading}
                     />
 
 

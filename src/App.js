@@ -13,12 +13,12 @@ let default_data;
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2FhZGlxbSIsImEiOiJjamJpMXcxa3AyMG9zMzNyNmdxNDlneGRvIn0.wjlI8r1S_-xxtq2d-W5qPA';
 
-const csvUrl = 'https://texas-education.s3-us-west-2.amazonaws.com/default_data_v2.csv';
+const csvUrl = 'https://texas-education.s3-us-west-2.amazonaws.com/default_data.csv';
 const url_data = 'https://texas-education.s3-us-west-2.amazonaws.com/2019_rates_v2.min.geojson'
 
 
 const predict = async () => {
-  model = await tf.loadLayersModel('https://texas-education.s3-us-west-2.amazonaws.com/model2/model.json')
+  model = await tf.loadLayersModel('https://texas-education.s3-us-west-2.amazonaws.com/model3/model.json')
 }
 
 const getDefaultData = async () =>{
@@ -32,17 +32,19 @@ const getDefaultData = async () =>{
 
 let features = [
   "new_rate",
+  "teacher_student_ratio",
+  "teacher_total_base_salary",
+  "teacher_experience",
+  "principal_experience",
+  "assistant_principal_count",
   "all_students",
   "at_risk",
   "african_american",
-  "teacher_total_base_salary",
-  "teacher_experience",
   "white",
-  "principal_experience",
-  "assistant_principal_count"
 ]
 
 let prediction_features = [
+  "teacher_student_ratio",
   "all_students",
   "at_risk",
   "african_american",
@@ -54,12 +56,13 @@ let prediction_features = [
 ]
 
 let featureChangeValues ={
+    "teacher_student_ratio":1,
     "all_students":50,
     "at_risk":5,
-    "african_american":5,
+    "african_american":50,
     "teacher_total_base_salary":10000,
     "teacher_experience":5,
-    "white":5,
+    "white":50,
     "principal_experience":5,
     "assistant_principal_count":1,
 }
@@ -69,9 +72,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       modal:false,
+      isLoading:false,
       score:[],
       feature: 'new_rate',
       mode: "2019 School Data",
+      "teacher_student_ratio":0,
       "all_students":0,
       "at_risk":0,
       "african_american":0,
@@ -107,7 +112,7 @@ class App extends React.Component {
       center: [-99.027878, 31.319759],
       zoom: 6,
       maxZoom: 12,
-      minZoom: 1
+      minZoom: 5
     });
 
     this.map.on('load', () => {
@@ -182,8 +187,10 @@ class App extends React.Component {
     this.map.on('mouseleave', 'Predict Student Performance', this.popupLeave.bind(this));
 
     getDefaultData()
+      .then(()=>console.log("data loaded"))
+
     predict()
-    
+    .then(()=>console.log("model loaded"))
   }
 
   componentDidUpdate(){
@@ -196,7 +203,7 @@ class App extends React.Component {
 
     await default_data.forEachAsync(e => {
 
-      const y = tf.tidy(() => {
+      tf.tidy(() => {
         let a = []
 
         for (var key in e) {
@@ -215,9 +222,9 @@ class App extends React.Component {
         
         let predictions = model.predict(d).dataSync()
   
-        b.dispose()
-        c.dispose()
-        d.dispose()
+        // b.dispose()
+        // c.dispose()
+        // d.dispose()
   
         myscores = [...myscores, ...predictions]
   
@@ -225,7 +232,7 @@ class App extends React.Component {
    
     });
 
-    this.setState({score:myscores})
+    this.setState({score:myscores,isLoading:false})
 
   }
 
@@ -243,7 +250,7 @@ class App extends React.Component {
   }
 
   modalOpen() {
-    this.setState({ modal: true });
+    this.setState({modal:true});
   }
 
   modalClose() {
@@ -307,18 +314,22 @@ class App extends React.Component {
 
     if (e.target.name === 'minus') {
     
-      this.setState({[feature]:this.state[feature]-featureChangeValues[feature]},()=>{
+      this.setState({[feature]:this.state[feature]-featureChangeValues[feature],isLoading:true},()=>{
         this.updatePredictions()
-        this.updatedPredictionGeometry()
-        console.log(this.state[feature])
+          .then(()=>{
+            this.updatedPredictionGeometry()
+            this.setState({isLoading:false})
+          })
       })
 
 
     } else {
-      this.setState({[feature]:this.state[feature]+featureChangeValues[feature]},()=>{
+      this.setState({[feature]:this.state[feature]+featureChangeValues[feature],isLoading:true},()=>{
         this.updatePredictions()
-        this.updatedPredictionGeometry()
-        console.log(this.state[feature])
+          .then(()=>{
+            this.updatedPredictionGeometry()
+            this.setState({isLoading:false})
+          })
       })
     }
 
@@ -339,6 +350,7 @@ class App extends React.Component {
           handleClose = {this.modalClose}
           handleOpen = {this.modalOpen}
           FeatureChange = {this.state}
+          isLoading = {this.state.isLoading}
         />
         <div ref={el => this.mapContainer = el} className='mapContainer' />
       </div>
